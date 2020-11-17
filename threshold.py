@@ -1,0 +1,40 @@
+# import the opencv library 
+import cv2 as cv
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define a video capture object 
+# vid = cv.VideoCapture(1) for the EasyCap usb
+# vid = cv.VideoCapture(-1) for the Webcam
+vid = cv.VideoCapture(-1) 
+
+
+while(True): 
+      
+    # CAPTURE THE VIDEO FRAME 
+    # by frame 
+    ret, frame = vid.read() 
+    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+
+
+    # THRESHOLDING
+    threshold, thresh_img = cv.threshold(gray,150,255,cv.THRESH_BINARY)
+    adaptiv_thresh_img = cv.adaptiveThreshold(gray,255,cv.ADAPTIVE_THRESH_GAUSSIAN_C,\
+            cv.THRESH_BINARY,15,3)
+    ret3,th3 = cv.threshold(adaptiv_thresh_img,0,255,cv.THRESH_BINARY+cv.THRESH_OTSU)
+    # DISPLAY THE OUTPUT IMAGE
+    cv.imshow('gray',gray)  
+    cv.imshow('adaptiv_thresh_img',adaptiv_thresh_img)
+    cv.imshow('th3',th3)
+    
+    # the 'q' button is set as the 
+    # quitting button you may use any 
+    # desired button of your choice 
+    if cv.waitKey(1) & 0xFF == ord('q'): 
+        break
+  
+# After the loop release the cap object 
+vid.release() 
+# Destroy all the windows 
+cv.destroyAllWindows() 
+
