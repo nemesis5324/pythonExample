@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 # define a video capture object 
 # vid = cv.VideoCapture(1) for the EasyCap usb
 # vid = cv.VideoCapture(-1) for the Webcam
-vid = cv.VideoCapture(1) 
+vid = cv.VideoCapture(0) 
 blank = np.zeros((300,300,3),dtype='uint8')
 green = np.zeros((300,300,3),dtype='uint8')
 green[:] = 0,255,0
@@ -44,39 +44,39 @@ while(True):
     # Display the resulting frame 
     # cv.imshow('frame', frame) 
     #cv.rectangle(frame,(264,160),(376,320),(0,255,0), thickness=2)
-    cv.line(frame,(160,240),(480,240),(0,255,0),thickness=2)
-    cv.line(frame,(320,120),(320,360),(0,255,0),thickness=2)
-    cv.circle(frame,(320,240),60,(0,255,0),thickness=2)
+    #cv.line(frame,(160,240),(480,240),(0,255,0),thickness=2)
+    #cv.line(frame,(320,120),(320,360),(0,255,0),thickness=2)
+    #cv.circle(frame,(320,240),60,(0,255,0),thickness=2)
 
     # Image transformation
     
     # Contour detection
     # STEP 1: CREATE BINARY IMAGE
-    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+    #gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     #blur = cv.GaussianBlur(gray,(7,7),cv.BORDER_DEFAULT)
     #edges = cv.Canny(blur,100,200)
 
     # STEP 2: APPLY THRESHOLD TO MAKE OBJECT DIFFERENT
-    ret, thresh = cv.threshold(gray, 110,255,cv.THRESH_BINARY) 
-    dilated = cv.dilate(thresh,(7,7),iterations=3)
-    blank = np.zeros((thresh.shape[0],thresh.shape[1],3), dtype='uint8')
+    #ret, thresh = cv.threshold(gray, 110,255,cv.THRESH_BINARY) 
+    #dilated = cv.dilate(thresh,(7,7),iterations=3)
+    #blank = np.zeros((thresh.shape[0],thresh.shape[1],3), dtype='uint8')
  
     # STEP 3: COUNT HOW MANY CONTOURS IN THE IMAGE
-    contours, hierarchies = cv.findContours(thresh, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
-    print(len(contours))
-    cv.drawContours(blank, contours,-1,(0,0,255),2)
+    #contours, hierarchies = cv.findContours(thresh, cv.RETR_LIST, cv.CHAIN_APPROX_SIMPLE)
+    #print(len(contours))
+    #cv.drawContours(blank, contours,-1,(0,0,255),2)
     
 	
 
 
-    font = cv.FONT_HERSHEY_SIMPLEX
-    cv.putText(frame,'Camera test',(50,50), font, 1,(0,0,255),2)
+    #font = cv.FONT_HERSHEY_SIMPLEX
+    #cv.putText(frame,'Camera test',(50,50), font, 1,(0,0,255),2)
     
     
     # STEP 4: DISPLAY THE OUTPUT IMAGE
     cv.imshow('frame',frame)  
-    cv.imshow('thresh',thresh)  
-    cv.imshow('Contours', blank)  
+    #cv.imshow('thresh',thresh)  
+    #cv.imshow('Contours', blank)  
 
 
     #Drawing 

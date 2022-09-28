@@ -5,7 +5,7 @@ import numpy as np
 # define a video capture object 
 # vid = cv.VideoCapture(1) for the EasyCap usb
 # vid = cv.VideoCapture(-1) for the Webcam
-vid = cv.VideoCapture(-1) 
+vid = cv.VideoCapture(0) 
 
 
 while(True): 
